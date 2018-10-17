@@ -1,0 +1,16 @@
+version: "2"
+services:
+  api:
+    image: pocflask/todo-api:prod
+    ports:
+      - "5000:5000"
+    env_file:
+      - env/staging.env
+    # Run the flask server
+    command: bin/flask-prod.sh
+
+  migrate:
+    image: pocflask/todo-api:prod
+    env_file:
+      - env/staging.env
+    command: bin/flask-upgrade.sh
